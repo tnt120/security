@@ -5,39 +5,141 @@ const app = express();
 
 app.use(cors());
 
-const items = [
-  { name: "item0", value: 0, type: null },
-  { name: "item1", value: 1, type: null },
-  { name: "item2", value: 2, type: null },
-  { name: "item3", value: 3, type: null },
-  { name: "item4", value: 4, type: null },
-  { name: "item5", value: 5, type: null },
-  { name: "item6", value: 6, type: null },
-  { name: "item7", value: 7, type: null },
-  { name: "item8", value: 8, type: null },
-  { name: "item9", value: 9, type: null },
-  { name: "item10", value: 10, type: null },
-  { name: "item11", value: 11, type: null },
-  { name: "item12", value: 12, type: null },
-  { name: "item13", value: 13, type: null },
-  { name: "item14", value: 14, type: null },
-  { name: "item15", value: 15, type: null },
-  { name: "item16", value: 16, type: null },
-  { name: "item17", value: 17, type: null },
-  { name: "item18", value: 18, type: null },
-  { name: "item19", value: 19, type: null },
-  { name: "item20", value: 20, type: null },
-  { name: "item21", value: 21, type: null },
-  { name: "item22", value: 22, type: null },
-  { name: "item23", value: 23, type: null },
-  { name: "item24", value: 24, type: null },
-  { name: "item25", value: 25, type: null },
-  { name: "item26", value: 26, type: null },
-  { name: "item27", value: 27, type: null },
-  { name: "item28", value: 28, type: null },
-  { name: "item29", value: 29, type: null },
-];
-
+const items = {
+  "release1": {
+    "component1": {
+      "defaults": {
+        "gitOrg": "GitOrg1",
+        "gitRepo": "GitRepo1_1",
+        "gitLabels": [
+          "release:rel1",
+          "Security"
+        ],
+        "gitMentions": [
+          "Developer1"
+        ],
+        "ossLayers": "1-",
+        "statLayers": 1,
+        "vaEnabled": true,
+        "ossEnabled": true,
+        "statEnabled": true,
+        "vaNamespace": "release1-ns",
+        "releaseName": "release1",
+        "updated": "20200412-09:00:20"
+      },
+      "images": [
+        {
+          "name": "img1",
+          "url": "some.docker.registry.url",
+          "tag": "tag1",
+          "statLayers": "1-5",
+          "gitLabels": [
+            "Squad-A"
+          ],
+          "gitAssignees": [
+            "Developer2"
+          ],
+          "gitMentions": [
+            "Developer-3"
+          ]
+        },
+        {
+          "name": "img2",
+          "url": "some.docker.registry.url",
+          "tag": "tag5",
+          "gitLabels": [
+            "Squad-B"
+          ],
+          "gitAssignees": [
+            "Developer-2"
+          ],
+          "gitMentions": [
+            "Developer-3"
+          ]
+        }
+      ]
+    }
+  },
+  "release2": {
+    "component1": {
+      "defaults": {
+        "gitOrg": "GitOrg2",
+        "gitRepo": "GitRepo2_1",
+        "gitLabels": [
+          "Security"
+        ],
+        "ossLayers": "1-",
+        "statLayers": "1",
+        "vaEnabled": true,
+        "ossEnabled": true,
+        "statEnabled": true,
+        "vaNamespace": "rel2-ns",
+        "releaseName": "rel2"
+      },
+      "images": [
+        {
+          "name": "img3",
+          "url": "some.docker.registry.url",
+          "tag": "tag5",
+          "statLayers": "1-5",
+          "gitLabels": [
+            "Squad-G"
+          ],
+          "gitAssignees": [
+            "Developer7"
+          ],
+          "gitMentions": [
+            "Developer-2"
+          ]
+        },
+      ]
+    },
+    "component2": {
+      "defaults": {
+        "gitOrg": "GitOrg7",
+        "gitRepo": "GitRepo7_1",
+        "gitLabels": [
+          "SQUAD-J",
+          "Security"
+        ],
+        "ossLayers": "1-",
+        "statLayers": "1",
+        "vaEnabled": true,
+        "ossEnabled": true,
+        "statEnabled": true,
+        "vaNamespace": "rel2ns",
+        "releaseName": "rel2"
+      },
+      "images": [
+        {
+          "name": "img72",
+          "url": "docker.registry.url.xyz",
+          "tag": "3.2.1"
+        },
+        {
+          "name": "img73",
+          "url": "docker.registry.url.xyz",
+          "tag": "3.2.1"
+        },
+        {
+          "name": "img76",
+          "url": "docker.registry.url.xyz",
+          "tag": "3.2.1"
+        },
+        {
+          "name": "img79",
+          "url": "docker.registry.url.xyz",
+          "tag": "abc"
+        },
+        {
+          "name": "img71",
+          "url": "docker.registry.url.xyz",
+          "tag": "3.2.1.234"
+        }
+      ]
+    }
+  }
+}
 app.get("/", (req, res) => {
   res.json(items);
 });
