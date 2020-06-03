@@ -9,9 +9,19 @@ const file = require('./test.json')
 app.use(cors());
 app.use(bodyParser());
 
-app.post("/", (req, res) => {
-  console.log(req.body);
-  res.end(JSON.stringify(req.body));
+app.post("/scan/:name", (req, res) => {
+  const errors = [
+    'img1',
+    'img79'
+  ]
+  const check = name => errors.find(item => item === name) ? false : true
+
+  res.json(req.body.map(({ name }) => ({
+    name,
+    send: check(name),
+    type: req.params.name
+  })))
+
 })
 
 const items = file;
